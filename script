@@ -392,9 +392,9 @@ def perform_build_test():
     call("./scripts/decrypt-key.sh", shell=True)
     call("./scripts/add-key.sh", shell=True)
 
-    call("xctool -workspace $WORKSPACE_NAME.xcworkspace -scheme $SCHEME_NAME -sdk $BUILD_SDK ONLY_ACTIVE_ARCH=NO", shell=True)
-    call("xctool test -workspace $WORKSPACE_NAME.xcworkspace -scheme $SCHEME_NAME -sdk $BUILD_SDK ONLY_ACTIVE_ARCH=NO", shell=True)
-    call("xctool -workspace $WORKSPACE_NAME.xcworkspace -scheme $SCHEME_NAME -sdk $RELEASE_BUILD_SDK -configuration Release ONLY_ACTIVE_ARCH=NO archive -archivePath $PWD/build/$APP_NAME.xcarchive", shell=True)
+    call("xcodebuild -workspace $WORKSPACE_NAME.xcworkspace -scheme $SCHEME_NAME -sdk $BUILD_SDK ONLY_ACTIVE_ARCH=NO", shell=True)
+    call("xcodebuild test -workspace $WORKSPACE_NAME.xcworkspace -scheme $SCHEME_NAME -sdk $BUILD_SDK ONLY_ACTIVE_ARCH=NO", shell=True)
+    call("xcodebuild -workspace $WORKSPACE_NAME.xcworkspace -scheme $SCHEME_NAME -sdk $RELEASE_BUILD_SDK -configuration Release ONLY_ACTIVE_ARCH=NO archive -archivePath $PWD/build/$APP_NAME.xcarchive", shell=True)
 
     call("./scripts/sign-and-upload.sh", shell=True)
     call("./scripts/remove-key.sh", shell=True)
